@@ -59,3 +59,57 @@ def on_submit():
 
     if user_height < 60: #for those less than 5 feet in height, we are adding more protein to their body 
         diet_plan += ", Snack: Protein shake"
+
+        
+    if user_exercise == "Cardio":
+        exercise_plan = "30 minutes of running\n10 minutes of jumping jacks: aim for 6 sets of 30 at least\n5 minutes of burpees"
+    elif user_exercise == "Strength":
+        exercise_plan = "Workout for 1 hour: 3 sets of 10 benchpresses\n3 sets of 10 squats\n3 sets of deadlifts (you can incresae difficulty)"
+    elif user_exercise == "Yoga":
+        exercise_plan = "30 minutes of yoga, holding one nostril at a time and breathing through the other slowly\nFinally, 10 minutes of stretching"
+    else:
+        exercise_plan = "No exercise plan available for this selection"
+
+
+    workaround_plan = "" #depending on allergies there is a workaround plan to prevent any contamination 
+    if dairy_var.get() == 1:
+        workaround_plan += "Avoid dairy products. "
+    if gluten_var.get() == 1:
+        workaround_plan += "Avoid gluten-containing products. "
+    if peanut_var.get() == 1:
+        workaround_plan += "Avoid peanuts and peanut butter. "
+    if seafood_var.get() == 1:
+        workaround_plan += "Avoid seafood. "
+    if len(workaround_plan) == 0:
+        workaround_plan = "No workaround plan required."
+
+
+    output_label.configure( #display widget
+        text=f"Based on your input, here is your customized health advice plan:\n\nDiet plan: {diet_plan}\n\nExercise plan: {exercise_plan}\n\nWorkaround plan: {workaround_plan}"
+    )
+
+    
+ #setting all the colors, labels and frames and then packing it using y coordinates 
+frame_bg = "white"
+scrollable_frame.configure(style="My.TFrame")
+window.configure(bg="lightgray")
+age_frame = tk.Frame(window, bg=frame_bg)
+age_frame.pack(pady=10)
+age_label = tk.Label(age_frame, text="What is your age?", font=("Arial", 12), bg=frame_bg)
+age_label.pack(side=tk.LEFT, padx=10)
+age_entry = tk.Entry(age_frame, width=50, font=("Arial", 12))
+age_entry.pack(side=tk.LEFT)
+height_frame = tk.Frame(window, bg=frame_bg)
+height_frame.pack(pady=10)
+height_label = tk.Label(height_frame, text="What is your height in in?", font=("Arial", 12), bg=frame_bg)
+height_label.pack(side=tk.LEFT, padx=10)
+height_entry = tk.Entry(height_frame, width=50, font=("Arial", 12))
+height_entry.pack(side=tk.LEFT)
+weight_frame = tk.Frame(window, bg=frame_bg)
+weight_frame.pack(pady=10)
+weight_label = tk.Label(weight_frame, text="What is your weight in lbs?", font=("Arial", 12), bg=frame_bg)
+weight_label.pack(side=tk.LEFT, padx=10)
+weight_entry = tk.Entry(weight_frame, width=50, font=("Arial", 12))
+weight_entry.pack(side=tk.LEFT)
+diet_frame = tk.Frame(window, bg=frame_bg) #diet menu
+diet_frame.pack(pady=10)
